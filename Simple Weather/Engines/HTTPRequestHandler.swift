@@ -14,16 +14,11 @@ class HTTPRequestHandler {
     
     // Create a data structure to standardize how http responses are passed around the app
     struct HTTPRequestResponse {
-        var response: URLResponse?
-        var data: Data?
-        var error: Error?
+        let response: URLResponse?
+        let data: Data?
+        let error: Error?
         var statusCode: Int {
-            get {
-                guard let response = response as? HTTPURLResponse else {
-                    return 0
-                }
-                return response.statusCode
-            }
+            return (response as? HTTPURLResponse)?.statusCode ?? 0
         }
         
         init(_ response: URLResponse?, _ data: Data?, _ error: Error?) {
